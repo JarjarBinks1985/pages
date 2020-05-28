@@ -219,9 +219,9 @@ class Page extends QueryableModel implements Responsable
   {
     $blocks = $this->content->filter(function ($content) use ($area) {
       return $content->area === $area;
-    })->mapWithKeys(function ($block) {
+    })->map(function ($block) {
       if ($template = Template::retrieve((int) $block->text)) {
-        return [$template->alias => $block->title ? $block->title : null];
+        return [$template->alias, $block->title ? $block->title : null];
       };
     });
 
